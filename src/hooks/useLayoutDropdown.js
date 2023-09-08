@@ -2,22 +2,30 @@ import {useEffect, useState, useMemo} from 'react';
 import {I18nManager, Dimensions} from 'react-native';
 import {calculateDropdownHeight} from '../helpers/calculateDropdownHeight';
 import {useKeyboardRemainingScreenHeight} from './useKeyboardRemainingScreenHeight';
+
 const {height} = Dimensions.get('window');
 
-export const useLayoutDropdown = (data, dropdownStyle, rowStyle, search) => {
+export const useLayoutDropdown = (data, dropdownStyle, rowStyle, search, defaultTextItem) => {
   const [isVisible, setIsVisible] = useState(false); // dropdown visible ?
   const [buttonLayout, setButtonLayout] = useState(null);
   const [dropdownPX, setDropdownPX] = useState(0); // position x
   const [dropdownPY, setDropdownPY] = useState(0); // position y
   const [dropdownHEIGHT, setDropdownHEIGHT] = useState(() => {
-    return calculateDropdownHeight(dropdownStyle, rowStyle, data?.length || 0, search);
+    return calculateDropdownHeight(
+      dropdownStyle,
+      rowStyle,
+      defaultTextItem ? data?.length + 1 : data?.length || 0,
+      search,
+    );
   }); // dropdown height
   const [dropdownWIDTH, setDropdownWIDTH] = useState(0); // dropdown width
   const remainigHeightAvoidKeyboard = useKeyboardRemainingScreenHeight();
   const safeDropdownViewUnderKeyboard = rowStyle && rowStyle.height ? rowStyle.height * 3 : 50 * 3;
 
   useEffect(() => {
-    setDropdownHEIGHT(calculateDropdownHeight(dropdownStyle, rowStyle, data?.length || 0, search));
+    setDropdownHEIGHT(
+      calculateDropdownHeight(dropdownStyle, rowStyle, defaultTextItem ? data?.length + 1 : data?.length || 0, search),
+    );
   }, [dropdownStyle, rowStyle, data]);
 
   const onDropdownButtonLayout = (w, h, px, py) => {

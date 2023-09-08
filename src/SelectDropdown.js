@@ -77,7 +77,7 @@ const SelectDropdown = (
     getItemLayout,
     dropdownWindowStyle,
     onRequestClose,
-  } = useLayoutDropdown(data, dropdownStyle, rowStyle, search);
+  } = useLayoutDropdown(data, dropdownStyle, rowStyle, search, defaultTextItem);
   useImperativeHandle(ref, () => ({
     reset: () => {
       reset();
