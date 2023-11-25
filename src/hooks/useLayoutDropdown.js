@@ -1,5 +1,5 @@
-import {useEffect, useState, useMemo} from 'react';
-import {I18nManager, Dimensions} from 'react-native';
+import {useEffect, useMemo, useState} from 'react';
+import {Dimensions, I18nManager} from 'react-native';
 import {calculateDropdownHeight} from '../helpers/calculateDropdownHeight';
 import {useKeyboardRemainingScreenHeight} from './useKeyboardRemainingScreenHeight';
 
@@ -54,7 +54,6 @@ export const useLayoutDropdown = (data, dropdownStyle, rowStyle, search, default
     return {
       ...{
         borderTopWidth: 0,
-        overflow: 'hidden',
       },
       ...dropdownStyle,
       ...{
