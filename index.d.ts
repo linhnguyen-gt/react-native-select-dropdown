@@ -24,6 +24,8 @@ export interface SelectDropdownType {
    */
   defaultButtonText?: string;
 
+  defaultButtonTextColor?: string;
+
   /**
    * default text item if want to select text default button => return onSelect({ "name": "", "value": "" }, -1)
    */

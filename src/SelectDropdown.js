@@ -18,6 +18,7 @@ const SelectDropdown = (
     onPressDropdown /* function  */,
     onSelect /* function  */,
     defaultButtonText /* String */,
+    defaultButtonTextColor /* String */,
     defaultTextItem /* String */,
     labelButtonText /* String */,
     buttonTextAfterSelection /* function */,
@@ -255,11 +256,15 @@ const SelectDropdown = (
             numberOfLines={1}
             allowFontScaling={false}
             style={mergeStyles(styles.dropdownButtonText, buttonTextStyle)}>
-            {isExist(selectedItem)
-              ? buttonTextAfterSelection
-                ? buttonTextAfterSelection(selectedItem, selectedIndex)
-                : selectedItem['name'].toString()
-              : defaultButtonText}
+            {isExist(selectedItem) ? (
+              buttonTextAfterSelection ? (
+                buttonTextAfterSelection(selectedItem, selectedIndex)
+              ) : (
+                selectedItem['name'].toString()
+              )
+            ) : (
+              <Text style={{color: defaultButtonTextColor}}>{defaultButtonText}</Text>
+            )}
           </Text>
         </View>
       )}
