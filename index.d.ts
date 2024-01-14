@@ -146,6 +146,11 @@ export interface SelectDropdownType {
    * function returns React component for search input icon
    */
   renderSearchInputRightIcon?: (selectedItem: DropdownItem, index: number) => React.ReactNode;
+
+  /**
+   * size box dropdown
+   */
+  heightDropDown?: number;
 }
 
 declare module 'react-native-select-dropdown' {

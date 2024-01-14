@@ -55,6 +55,7 @@ const SelectDropdown = (
     renderSearchInputLeftIcon /* function returns React component for search input icon */,
     renderSearchInputRightIcon /* function returns React component for search input icon */,
     onChangeSearchInputText /* function callback when the search input text changes, this will automatically disable the dropdown's interna search to be implemented manually outside the component  */,
+    heightDropDown /* size box dropdown */,
   },
   ref,
 ) => {
@@ -78,7 +79,7 @@ const SelectDropdown = (
     getItemLayout,
     dropdownWindowStyle,
     onRequestClose,
-  } = useLayoutDropdown(data, dropdownStyle, rowStyle, search, defaultTextItem);
+  } = useLayoutDropdown(data, dropdownStyle, rowStyle, search, defaultTextItem, heightDropDown);
   useImperativeHandle(ref, () => ({
     reset: () => {
       reset();

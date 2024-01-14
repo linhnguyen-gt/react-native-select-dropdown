@@ -5,7 +5,7 @@ import {useKeyboardRemainingScreenHeight} from './useKeyboardRemainingScreenHeig
 
 const {height} = Dimensions.get('window');
 
-export const useLayoutDropdown = (data, dropdownStyle, rowStyle, search, defaultTextItem) => {
+export const useLayoutDropdown = (data, dropdownStyle, rowStyle, search, defaultTextItem, heightDropDown) => {
   const [isVisible, setIsVisible] = useState(false); // dropdown visible ?
   const [buttonLayout, setButtonLayout] = useState(null);
   const [dropdownPX, setDropdownPX] = useState(0); // position x
@@ -24,9 +24,15 @@ export const useLayoutDropdown = (data, dropdownStyle, rowStyle, search, default
 
   useEffect(() => {
     setDropdownHEIGHT(
-      calculateDropdownHeight(dropdownStyle, rowStyle, defaultTextItem ? data?.length + 1 : data?.length || 0, search),
+      calculateDropdownHeight(
+        dropdownStyle,
+        rowStyle,
+        defaultTextItem ? data?.length + 1 : data?.length || 0,
+        search,
+        heightDropDown,
+      ),
     );
-  }, [dropdownStyle, rowStyle, data]);
+  }, [dropdownStyle, rowStyle, data, heightDropDown]);
 
   const onDropdownButtonLayout = (w, h, px, py) => {
     setButtonLayout({w, h, px, py});
